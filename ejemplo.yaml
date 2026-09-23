@@ -5,6 +5,11 @@
   connection: local
 
   tasks:
+    
+    - name: Escribir mensaje plano
+      ansible.builtin.debug:
+        msg: "Hola, esto se escribe en la salida de Ansible."
+  
     - name: Listar las VMs del vCenter
       community.vmware.vmware_vm_info:
         validate_certs: false
