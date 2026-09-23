@@ -1,0 +1,15 @@
+---
+- name: Prueba de conexion al vCenter
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  tasks:
+    - name: Listar las VMs del vCenter
+      community.vmware.vmware_vm_info:
+        validate_certs: false
+      register: vm_info
+
+    - name: Mostrar nombres de las VMs encontradas
+      ansible.builtin.debug:
+        msg: "{{ vm_info.virtual_machines | map(attribute='guest_name') | list }}"
